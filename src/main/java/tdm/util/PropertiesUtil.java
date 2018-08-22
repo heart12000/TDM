@@ -15,7 +15,7 @@ public class PropertiesUtil {
 	private String FilePath;
 	private Properties prop;
 	
-	//构造方法，用作传入配置文件路径
+	//用作传入配置文件路径
 	public PropertiesUtil(String FilePath) throws IOException{
 		this.FilePath = FilePath;
 		this.prop = readProperites();

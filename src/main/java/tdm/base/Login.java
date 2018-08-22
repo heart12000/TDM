@@ -22,7 +22,7 @@ public class Login {
 	
 public static void main(String[] args) {
 	Login login = new Login();
-	Login.InitDriver();
+	login.InitDriver();
 	}
 
 }
