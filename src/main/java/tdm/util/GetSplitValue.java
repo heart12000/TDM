@@ -8,7 +8,7 @@ public class GetSplitValue {
 /*
  * 自动获取拆分keys值
  * */
-	public static By getElementKeys(String key) throws IOException{
+	public static By getElementValue(String key) throws IOException{
 		PropertiesUtil prop = new PropertiesUtil("element.properties");
 		String Element = prop.getProperties(key);
 		String ElementType = Element.split(">")[0];
