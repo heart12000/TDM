@@ -4,14 +4,21 @@
 
 package tdm.base;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.Test;
 
+import tdm.util.GetElementProperties;
+import tdm.util.GetScreenShot;
 import tdm.util.GetSplitValue;
-import tdm.util.getElementProperties;
 
 public class Login {
 	public WebDriver driver;
@@ -24,16 +31,33 @@ public class Login {
 		driver.get("https://testbpm.yktour.com.cn/");
 	}
 	
-	public static void main(String[] args) throws Exception {
+/*	
+ * public void takeScreenShot(){
+//		截图以时间进行命名
+		long time = System.currentTimeMillis();
+		String curPath = System.getProperty("user.dir");
+		System.out.println(curPath);
+		String cutTime = String.valueOf(time);
+		String name = cutTime + ".png";
+		String path = curPath + "/" + "test-output" + "/" + name;
+		File png =  ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		
+		try {
+			FileUtils.copyFile(png, new File(path));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	*/
+	
+	@Test
+	public void loginTestCase() throws Exception {
 		Login login = new Login();
 		login.InitDriver();
-	//	WebDriver Driver = login.driver;
-	//	Driver.findElement(GetSplitValue.getElementValue("loginname")).sendKeys("200880");
-	//	Driver.findElement(GetSplitValue.getElementValue("loginpwd")).sendKeys("1qaw32");
-	//	Driver.findElement(GetSplitValue.getElementValue("loginbutton")).click();
 		login.loginScript("username","pwd");
+//		login.takeScreenShot();
 		}
-
+	
 	public WebElement iDriver(String key) throws Exception{
 		if(driver.findElement(GetSplitValue.getElementValue(key)).isDisplayed()){
 			return driver.findElement(GetSplitValue.getElementValue(key));
@@ -44,25 +68,31 @@ public class Login {
 	}
 	
 	public void loginScript(String username,String pwd) throws Exception{
+//		GetScreenShot gs = new GetScreenShot();
 		if(iDriver("loginname").isDisplayed()){
 			System.out.println("登录名输入框显示正常");
 		}else{
 			System.out.println("登录名输入框显示不不不不不不正常！！！！！");
 		}
-		iDriver("loginname").sendKeys(getElementProperties.getValue(username));
+		iDriver("loginname").sendKeys(GetElementProperties.getValue(username));
 		if(iDriver("loginpwd").isDisplayed()){
 			System.out.println("登录密码输入框显示正常");
+//			gs.takeScreenShot();
 		}else{
 			System.out.println("登录密码输入框显示不不不不不不正常！！！！");
 		}
-		iDriver("loginpwd").sendKeys(getElementProperties.getValue(pwd));
+		iDriver("loginpwd").sendKeys(GetElementProperties.getValue(pwd));
+		
 		if(iDriver("loginbutton").isDisplayed()){
 			System.out.println("登陆按钮显示正常");
+			
 		}else{
 			System.out.println("登录按钮显示不不不不不不正常！！！！");
 		}
 		iDriver("loginbutton").click();
 	}
+	
+	
 
 }
 
