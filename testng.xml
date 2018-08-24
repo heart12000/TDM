@@ -3,7 +3,7 @@
 <suite name="Suite">
   <test name="Test">
     <classes>
-      <class name="tdm.base.Login"/>
+      <class name="tdm.test.Itest"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
