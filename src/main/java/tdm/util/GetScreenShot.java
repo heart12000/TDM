@@ -6,6 +6,7 @@ import java.io.IOException;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+
 import tdm.base.BaseDriver;
 
 /*
@@ -14,6 +15,11 @@ import tdm.base.BaseDriver;
 
 public class GetScreenShot extends BaseDriver{
 	
+	public GetScreenShot(String browser) {
+		super(browser);
+		// TODO Auto-generated constructor stub
+	}
+
 	public void takeScreenShot(){
 //		截图以时间进行命名
 		long time = System.currentTimeMillis();

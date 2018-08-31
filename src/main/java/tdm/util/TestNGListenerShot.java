@@ -11,13 +11,13 @@ import java.io.IOException;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
 import org.testng.TestListenerAdapter;
 
-import tdm.base.BaseDriver;
+import tdm.base.CaseDriver;
 
 public class TestNGListenerShot extends TestListenerAdapter {
+	public CaseDriver driver;
 	
 	  @Override
 	  public void onTestSuccess(ITestResult tr) {
@@ -25,8 +25,8 @@ public class TestNGListenerShot extends TestListenerAdapter {
 	  }
 
 	  @Override
-	  public void onTestFailure(ITestResult tr) {  
-		  takeScreenShot(BaseDriver.driver);
+	  public void onTestFailure(ITestResult tr) {
+		  takeScreenShot(driver);
 		  super.onTestFailure(tr);
 	  }
 	  
@@ -36,7 +36,7 @@ public class TestNGListenerShot extends TestListenerAdapter {
 	  }
 	  
 //	  截图方法
-	  public void takeScreenShot(WebDriver driver){
+	  public void takeScreenShot(CaseDriver driver){
 			long time = System.currentTimeMillis();
 			String curPath = System.getProperty("user.dir");
 			System.out.println(curPath);

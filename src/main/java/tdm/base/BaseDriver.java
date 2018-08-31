@@ -1,45 +1,32 @@
 package tdm.base;
 
-import java.util.concurrent.TimeUnit;
-
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-
-/*
- * 生成公共driver
- * */
+import org.openqa.selenium.WebElement;
 
 public class BaseDriver {
-	public static WebDriver driver;
 	
-	@BeforeMethod
-	public void test01() throws Exception{
-		System.out.println("这是---@BeforeMethod");
+	/*公共driver*/
+	public WebDriver driver;
+	
+	public BaseDriver(String browser){
+		SelectDriver selectDriver = new SelectDriver();
+		driver = selectDriver.driverName(browser);
 	}
 	
-	@BeforeClass
-	public WebDriver initDriver(){
-		System.setProperty("webdriver.chrome.driver","D:/Selenium script recoder/chromedriver_win32_29/chromedriver.exe");
-		driver = new ChromeDriver();
-		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS);
-//		driver.get("https://testbpm.yktour.com.cn/");
-		return driver;
-	}
-	
-	@AfterMethod
-	public void test03(){
-		System.out.println("这是---@AfterMethod");
-	}
-	
-	@AfterClass
-	public void close() throws InterruptedException{
-		Thread.sleep(2000);
+	/*封装关闭driver方法*/
+	public void close(){
 		driver.close();
+	}
+	
+	/*封装Element方法*/
+	public WebElement findElement(By by){
+		return driver.findElement(by);
+	}
+	
+	/*封装get方法*/
+	public void get(String url){
+		driver.get(url);
 	}
 
 }
